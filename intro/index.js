@@ -1,0 +1,1 @@
+console.log(JSON.stringify({name: "John", age: 20}, null, 4));
