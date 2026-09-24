@@ -121,7 +121,36 @@ function countUniqueValues2(array) {
     return uniqueValuesCounter;
 }
 
-console.log(countUniqueValues2([1, 1, 1, 1, 1, 2])) // 2
-console.log(countUniqueValues2([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13])) // 7
-console.log(countUniqueValues2([])) // 0
-console.log(countUniqueValues2([-2, -1, -1, 0, 1])) // 4
+// console.log(countUniqueValues2([1, 1, 1, 1, 1, 2])) // 2
+// console.log(countUniqueValues2([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13])) // 7
+// console.log(countUniqueValues2([])) // 0
+// console.log(countUniqueValues2([-2, -1, -1, 0, 1])) // 4
+
+function countNotUniqueValues(array) {
+    if (!array.length) {
+        return 0;
+    }
+
+    let notUniqueCounter = 1;
+    let tempCounter = 1;
+    let i = 0;
+
+    for (let j = 1; j < array.length; j++) {
+        if (array[i] === array[j]) {
+            ++tempCounter;
+        } else {
+            tempCounter = 1;
+        }
+
+        notUniqueCounter = Math.max(tempCounter, notUniqueCounter);
+        i = j;
+    }
+
+    return notUniqueCounter;
+}
+
+console.log(countNotUniqueValues([1, 1, 1, 1, 1, 2])) // 5
+console.log(countNotUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13])) // 3
+console.log(countNotUniqueValues([])) // 0
+console.log(countNotUniqueValues([-2, -1, -1, 0, 1])) // 2
+console.log(countNotUniqueValues([-2, -1, -1, 0, 1, 1, 1, 1, 1])) // 5
