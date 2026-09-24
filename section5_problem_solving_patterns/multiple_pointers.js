@@ -126,6 +126,10 @@ function countUniqueValues2(array) {
 // console.log(countUniqueValues2([])) // 0
 // console.log(countUniqueValues2([-2, -1, -1, 0, 1])) // 4
 
+// ------------
+
+// EXAMPLE 3
+
 function countNotUniqueValues(array) {
     if (!array.length) {
         return 0;

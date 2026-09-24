@@ -57,9 +57,39 @@ function maxSubarraySum(arr, n) {
     return maxSum;
 }
 
+// console.log(maxSubarraySum([4, 2, 1, 6], 1)) // 6
+// console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2)) // 10
+// console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4)) // 17
+// console.log(maxSubarraySum([4, 2, 1, 6, 2], 4)) // 13
+// console.log(maxSubarraySum([], 4)) // null
 
-console.log(maxSubarraySum([4, 2, 1, 6], 1)) // 6
-console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2)) // 10
-console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4)) // 17
-console.log(maxSubarraySum([4, 2, 1, 6, 2], 4)) // 13
-console.log(maxSubarraySum([], 4)) // null
+// ------------
+
+// EXAMPLE 2: Given a string s, find the length of the longest substring without repeating characters.
+
+function longestWithoutRepeating(str) {
+    const lastSeen = new Map();
+    let max = 0;
+    let left = 0;
+
+    for (let right = 0; right < str.length; right++) {
+        const char = str[right];
+        const lastSeenByChar = lastSeen.get(char);
+
+        if (typeof lastSeenByChar === "number" && lastSeenByChar >= left) {
+            left = lastSeenByChar + 1;
+        }
+
+        lastSeen.set(char, right);
+        max = Math.max(max, right - left + 1);
+    }
+
+    return max;
+}
+
+console.log(longestWithoutRepeating("abba")) // 2;
+console.log(longestWithoutRepeating("abcabcbb")) // 3;
+console.log(longestWithoutRepeating("bbbbb")) // 1;
+console.log(longestWithoutRepeating("pwwkew")) // 3;
+console.log(longestWithoutRepeating("")) // 0;
+console.log(longestWithoutRepeating("dvdf")) // 3;
