@@ -104,7 +104,11 @@ function findNextUniqueIndex(current, array) {
 
 // O(n)
 function countUniqueValues2(array) {
-    let uniqueValuesCounter = 0;
+    if (!array.length) {
+        return 0;
+    }
+
+    let uniqueValuesCounter = 1;
     let i = 0;
 
     for (let j = 1; j < array.length; j++) {
@@ -112,10 +116,6 @@ function countUniqueValues2(array) {
             uniqueValuesCounter++;
             i = j;
         }
-    }
-
-    if (array[array.length - 1] !== array[array.length - 2]) {
-        uniqueValuesCounter++;
     }
 
     return uniqueValuesCounter;
@@ -153,8 +153,8 @@ function countNotUniqueValues(array) {
     return notUniqueCounter;
 }
 
-console.log(countNotUniqueValues([1, 1, 1, 1, 1, 2])) // 5
-console.log(countNotUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13])) // 3
-console.log(countNotUniqueValues([])) // 0
-console.log(countNotUniqueValues([-2, -1, -1, 0, 1])) // 2
-console.log(countNotUniqueValues([-2, -1, -1, 0, 1, 1, 1, 1, 1])) // 5
+// console.log(countNotUniqueValues([1, 1, 1, 1, 1, 2])) // 5
+// console.log(countNotUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13])) // 3
+// console.log(countNotUniqueValues([])) // 0
+// console.log(countNotUniqueValues([-2, -1, -1, 0, 1])) // 2
+// console.log(countNotUniqueValues([-2, -1, -1, 0, 1, 1, 1, 1, 1])) // 5
