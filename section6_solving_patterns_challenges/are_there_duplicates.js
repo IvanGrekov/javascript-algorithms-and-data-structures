@@ -25,7 +25,11 @@ function areThereDuplicatesFrequencyCounter(...args) {
 // Time - O(n log n)
 // Space - O(1)
 function areThereDuplicates(...args) {
-    args.sort();
+    args.sort((a, b) => {
+        if (a > b) return 1;
+        if (a < b) return -1;
+        return 0;
+    });
 
     let i = 0;
 
