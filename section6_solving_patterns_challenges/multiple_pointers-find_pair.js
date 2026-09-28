@@ -6,10 +6,6 @@
 // Time Complexity Requirement - O(n)
 // Space Complexity Requirement - O(n)
 
-// Part 2 - solve this with the following requirements:
-// Time Complexity Requirement - O(n log n)
-// Space Complexity Requirement - O(1)
-
 function findPairFrequencyCounter(array, target) {
     const dictionary = array.reduce((acc, val) => {
         acc[val] = ++acc[val] || 1;
@@ -30,6 +26,10 @@ function findPairFrequencyCounter(array, target) {
 
     return false;
 }
+
+// Part 2 - solve this with the following requirements:
+// Time Complexity Requirement - O(n log n)
+// Space Complexity Requirement - O(1)
 
 function findPair(array, target) {
     array.sort((a, b) => a - b);
