@@ -17,14 +17,11 @@ function binarySearch({
 }) {
     while (left <= right) {
         const middle = getMiddle(left, right);
+        const middleEl = arr[middle];
 
-        if (arr[middle] > num) {
-            right = middle - 1;
-        } else if (arr[middle] < num) {
-            left = middle + 1;
-        } else {
-            return middle;
-        }
+        if (middleEl === num) return middle;
+
+        middleEl > num ? right = middle - 1 : left = middle + 1;
     }
 
     return -1;
@@ -39,25 +36,31 @@ function findRotatedIndex(arr, num) {
     while (left <= right) {
         const middle = getMiddle(left, right);
         const middleEl = arr[middle];
-        if (middleEl === num) {
-            return middle;
-        }
+
+        if (middleEl === num) return middle;
 
         const leftEl = arr[left];
-        const isLeftSorted = leftEl <= middleEl;
-        const isNumInLeftPart = leftEl <= num && middleEl >= num;
+        // isLeftPartSorted
+        if (leftEl <= middleEl) {
+            // isNumInLeftPart
+            if (leftEl <= num && num <= middleEl) {
+                return binarySearch({ arr, left, right: middle, num });
+            }
+
+            // Drop left part and try to search right sorted part
+            left = middle + 1;
+            continue;
+        }
 
         const rightEl = arr[right];
-        const isRightSorted = rightEl >= middleEl;
-        const isNumInRightPart = middleEl <= num && rightEl >= num;
+        // isRightPartSorted
+        if (rightEl >= middleEl) {
+            // isNumInRightPart
+            if (middleEl <= num && num <= rightEl) {
+                return binarySearch({ arr, left: middle, right, num });
+            }
 
-        if (isLeftSorted && isNumInLeftPart) {
-            return binarySearch({ arr, left, right: middle, num });
-        } else if (isLeftSorted) {
-            left = middle + 1;
-        } else if (isRightSorted && isNumInRightPart) {
-            return binarySearch({ arr, left: middle, right, num });
-        } else {
+            // Drop right part and try to search left sorted part
             right = middle - 1;
         }
     }
