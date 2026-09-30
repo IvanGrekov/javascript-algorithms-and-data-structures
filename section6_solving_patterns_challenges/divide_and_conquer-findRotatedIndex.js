@@ -21,15 +21,17 @@ function binarySearch({
 
         if (middleEl === num) return middle;
 
-        middleEl > num ? right = middle - 1 : left = middle + 1;
+        if (middleEl > num) {
+            right = middle - 1;
+        } else {
+            left = middle + 1;
+        }
     }
 
     return -1;
 }
 
 function findRotatedIndex(arr, num) {
-    if (!arr.length) return -1;
-
     let left = 0;
     let right = arr.length - 1;
 
@@ -38,29 +40,40 @@ function findRotatedIndex(arr, num) {
         const middleEl = arr[middle];
 
         if (middleEl === num) return middle;
+        if (left === right) break;
 
         const leftEl = arr[left];
-        // isLeftPartSorted
-        if (leftEl <= middleEl) {
-            // isNumInLeftPart
+        // Left part is sorted
+        if (leftEl < middleEl) {
+            // Num is in left part
             if (leftEl <= num && num <= middleEl) {
-                return binarySearch({ arr, left, right: middle, num });
+                return binarySearch({
+                    arr,
+                    num,
+                    left,
+                    right: middle,
+                });
             }
 
-            // Drop left part and try to search right sorted part
+            // Drop left part and try to find right sorted part
             left = middle + 1;
             continue;
         }
 
         const rightEl = arr[right];
-        // isRightPartSorted
-        if (rightEl >= middleEl) {
-            // isNumInRightPart
+        // Right part is sorted
+        if (rightEl > middleEl) {
+            // Num is in right part
             if (middleEl <= num && num <= rightEl) {
-                return binarySearch({ arr, left: middle, right, num });
+                return binarySearch({
+                    arr,
+                    num,
+                    left: middle,
+                    right,
+                });
             }
 
-            // Drop right part and try to search left sorted part
+            // Drop right part and try to find left sorted part
             right = middle - 1;
         }
     }
