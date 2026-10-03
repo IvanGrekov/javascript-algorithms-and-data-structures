@@ -5,6 +5,34 @@
 // Recall that the Fibonacci sequence is the sequence of whole numbers 1, 1, 2, 3, 5, 8, ... which starts with 1 and 1,
 // and where every number there after is equal to the sum of the previous two numbers.
 
+// function fib(num) {
+//     const result = [];
+
+//     const inner = (counter) => {
+//         if (counter <= 0) return;
+
+//         let last = result[result.length - 1];
+//         if (!last) {
+//             last = 1;
+//             result.push(1);
+//         }
+
+//         let preLast = result[result.length - 2];
+//         if (!preLast) {
+//             preLast = 1;
+//             result.push(1);
+//         }
+
+//         result.push(last + preLast);
+
+//         inner(num - result.length);
+//     };
+
+//     inner(num);
+
+//     return result[num - 1];
+// }
+
 function fib(num) {
     if (num <= 2) return 1;
 
