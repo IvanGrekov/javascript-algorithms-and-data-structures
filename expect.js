@@ -12,6 +12,17 @@ function expect(actual) {
                 return actual;
             }
 
+            if (typeof actual === 'object' && actual !== null) {
+                const objectsEqual = JSON.stringify(actual) === JSON.stringify(expected);
+                if (objectsEqual) {
+                    console.log(`✅ PASS: expected ${JSON.stringify(expected)}, received ${JSON.stringify(actual)}`);
+                } else {
+                    console.log(`❌ FAIL: expected ${JSON.stringify(expected)}, received ${JSON.stringify(actual)}`);
+                }
+
+                return actual;
+            }
+
             if (actual === expected) {
                 console.log(`✅ PASS: expected ${expected}, received ${actual}`);
             } else {
