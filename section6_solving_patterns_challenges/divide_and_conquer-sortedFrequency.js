@@ -27,11 +27,11 @@ function findFirst(arr, n) {
 
     while (start !== end) {
         const middle = Math.floor((start + end) / 2);
-        const el = arr[middle];
+        const middleEl = arr[middle];
 
-        if (el < n) {
+        if (middleEl < n) {
             start = middle + 1;
-        } else if (el > n) {
+        } else if (middleEl > n) {
             end = middle - 1;
         } else {
             end = middle;
@@ -47,8 +47,9 @@ function findLast(arr, n) {
 
     while (start !== end) {
         const middle = Math.floor((start + end) / 2);
+        const middleEl = arr[middle];
 
-        if (arr[middle] <= n) {
+        if (middleEl <= n) {
             start = middle + 1;
         } else {
             end = middle - 1;
