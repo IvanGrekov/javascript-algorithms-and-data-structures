@@ -10,20 +10,20 @@ function flatten(array) {
     ];
 }
 
-function flatten(array) {
-    let resultArr = [];
+// function flatten(array) {
+//     let resultArr = [];
 
-    for (let i = 0; i < array.length; i++) {
-        const el = array[i];
-        if (Array.isArray(el)) {
-            resultArr = resultArr.concat(flatten(el));
-        } else {
-            resultArr.push(el);
-        }
-    }
+//     for (let i = 0; i < array.length; i++) {
+//         const el = array[i];
+//         if (Array.isArray(el)) {
+//             resultArr = resultArr.concat(flatten(el));
+//         } else {
+//             resultArr.push(el);
+//         }
+//     }
 
-    return resultArr;
-}
+//     return resultArr;
+// }
 
 const expect = require("../expect");
 
