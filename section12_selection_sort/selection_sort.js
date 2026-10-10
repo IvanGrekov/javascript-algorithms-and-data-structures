@@ -1,3 +1,4 @@
+// Complexity: O(n^2)
 function selectionSort(arr, getIsNewSelected = (a, b) => a - b) {
     for (let i = 0; i < arr.length - 1; i++) {
         let selectedIndex = i;
