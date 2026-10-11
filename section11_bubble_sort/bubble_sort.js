@@ -14,6 +14,8 @@ function bubbleSort(arr, cb = (a, b) => a - b) {
 
         if (!swapped) break;
     }
+
+    return arr;
 }
 
 const expect = require('../expect');

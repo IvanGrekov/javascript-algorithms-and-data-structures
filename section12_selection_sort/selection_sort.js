@@ -1,20 +1,18 @@
 // Complexity: O(n^2)
-function selectionSort(arr, getIsNewSelected = (a, b) => a - b) {
+function selectionSort(arr, cb = (a, b) => a - b) {
     for (let i = 0; i < arr.length - 1; i++) {
         let selectedIndex = i;
 
         for (let j = i + 1; j < arr.length; j++) {
-            const isNewSelected = getIsNewSelected(arr[selectedIndex], arr[j]);
-
-            if (isNewSelected > 0) {
+            if (cb(arr[selectedIndex], arr[j]) > 0) {
                 selectedIndex = j;
             }
         }
 
-        if (selectedIndex === i) continue;
-
         [arr[i], arr[selectedIndex]] = [arr[selectedIndex], arr[i]];
     }
+
+    return arr;
 }
 
 const expect = require('../expect');

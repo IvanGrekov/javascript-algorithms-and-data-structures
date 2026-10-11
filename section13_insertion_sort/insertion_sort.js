@@ -5,17 +5,17 @@
 // Repeat until the array is sorted
 
 // Complexity: O(n^2) in the worst and average case, O(n) in the best case (when the array is already/almost sorted)
-function insertionSort(arr, comparator = (a, b) => a - b) {
+function insertionSort(arr, cb = (a, b) => a - b) {
     for (let i = 1; i < arr.length; i++) {
-        const a = arr[i];
+        const current = arr[i];
         let j = i - 1;
 
-        while (j >= 0 && comparator(a, arr[j]) < 0) {
+        while (j >= 0 && cb(arr[j], current) > 0) {
             arr[j + 1] = arr[j];
-            --j;
+            j--;
         }
 
-        arr[j + 1] = a;
+        arr[j + 1] = current;
     }
 
     return arr;
