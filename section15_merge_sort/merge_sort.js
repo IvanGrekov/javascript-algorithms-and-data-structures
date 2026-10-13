@@ -49,3 +49,7 @@ expect(mergeSort([2, 1])).toBe([1, 2]);
 expect(mergeSort([5, 3, 8, 4, 2])).toBe([2, 3, 4, 5, 8]);
 expect(mergeSort([11, 7, 23, 4])).toBe([4, 7, 11, 23]);
 expect(mergeSort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1])).toBe([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+// Why we get O(n log n) time complexity:
+// O(log n) – decompositions
+// O(n) – n comparisons during merging inside sorting process
