@@ -6,11 +6,12 @@
 // Space Complexity: O(log n)
 function pivotHelper(
     arr,
-    cb = (a, b) => a - b,
-    start = 0,
-    end = arr.length - 1,
+    cb,
+    start,
+    end,
 ) {
-    if (!arr.length) return 0;
+    const middle = start + Math.floor((end - start) / 2);
+    [arr[start], arr[middle]] = [arr[middle], arr[start]];
 
     let swapIdx = start;
 

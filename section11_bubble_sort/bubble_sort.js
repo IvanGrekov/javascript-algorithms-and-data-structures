@@ -1,14 +1,16 @@
+// Start from the end and move to the beginning
+// Each nested iteration moved the largest value to its position in the end
+// Each new nested iteration ends before already sorted values in the end
+
 // Complexity: O(n^2) in the worst and average case, O(n) in the best case (when the array is already/almost sorted)
 function bubbleSort(arr, cb = (a, b) => a - b) {
     for (let i = arr.length - 1; i > 0; i--) {
         let swapped = false;
 
         for (let j = 0; j < i; j++) {
-            if (cb(arr[j], arr[j + 1]) <= 0) {
-                continue;
-            } else {
-                swapped = true;
+            if (cb(arr[j], arr[j + 1]) > 0) {
                 [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                swapped = true;
             }
         }
 

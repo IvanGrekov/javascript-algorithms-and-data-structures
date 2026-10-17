@@ -1,15 +1,19 @@
+// Start from the beginning and move to the end
+// On each nested iteration look for min value
+// Each new nested iteration start after already sorted values in the beginning
+
 // Complexity: O(n^2)
 function selectionSort(arr, cb = (a, b) => a - b) {
     for (let i = 0; i < arr.length - 1; i++) {
-        let selectedIndex = i;
+        let minIdx = i;
 
         for (let j = i + 1; j < arr.length; j++) {
-            if (cb(arr[selectedIndex], arr[j]) > 0) {
-                selectedIndex = j;
+            if (cb(arr[minIdx], arr[j]) > 0) {
+                minIdx = j;
             }
         }
 
-        [arr[i], arr[selectedIndex]] = [arr[selectedIndex], arr[i]];
+        [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]]
     }
 
     return arr;

@@ -10,6 +10,7 @@ function mergeSortedArrays(arr1, arr2, cb) {
 
     while (i < arr1.length && j < arr2.length) {
         const compare = cb(arr1[i], arr2[j]);
+
         if (compare > 0) {
             result.push(arr2[j]);
             ++j;
@@ -17,9 +18,9 @@ function mergeSortedArrays(arr1, arr2, cb) {
             result.push(arr1[i]);
             ++i;
         } else {
-            result.push(arr1[i], arr2[j]);
-            ++i;
+            result.push(arr2[j], arr1[i]);
             ++j;
+            ++i;
         }
     }
 
@@ -36,7 +37,6 @@ function mergeSort(array, cb = (a, b) => a - b) {
     const middle = Math.floor(array.length / 2);
     const left = mergeSort(array.slice(0, middle), cb);
     const right = mergeSort(array.slice(middle), cb);
-
     return mergeSortedArrays(left, right, cb);
 }
 
