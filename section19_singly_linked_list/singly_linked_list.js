@@ -35,7 +35,6 @@ class SinglyLinkedList {
         if (this.length === 0) {
             this.head = node;
             this.tail = node;
-            this.length = 1;
         } else {
             this.tail.next = node;
             this.tail = node;
@@ -44,14 +43,72 @@ class SinglyLinkedList {
         this.length++;
         return this;
     }
+
+    pop() {
+        if (this.length === 0) return undefined;
+
+        let removingNode = this.tail;
+
+        if (this.head === this.tail) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            let newTail = this.head;
+            while (newTail.next !== removingNode) {
+                newTail = newTail.next;
+            }
+            newTail.next = null;
+            this.tail = newTail;
+        }
+
+        this.length--;
+        return removingNode;
+    }
+
+    unshift(value) {
+        const node = new Node(value);
+
+        if (this.length === 0) {
+            this.head = node;
+            this.tail = node;
+        } else {
+            node.next = this.head;
+            this.head = node;
+        }
+
+        this.length++;
+        return this;
+    }
+
+    shift() {
+        if (this.length === 0) return undefined;
+
+        let removingNode = this.head;
+
+        if (this.head === this.tail) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = this.head.next;
+        }
+
+        this.length--;
+        return removingNode;
+    }
 }
 
 const singlyLinkedList = new SinglyLinkedList();
-singlyLinkedList.push("Hi");
 singlyLinkedList.push("World");
 singlyLinkedList.push("!");
 singlyLinkedList.push("How");
 singlyLinkedList.push("are");
 singlyLinkedList.push("you");
-singlyLinkedList.push("today");
+singlyLinkedList.push("today?");
+
+// console.log(singlyLinkedList.pop());
+
+// console.log(singlyLinkedList.shift());
+
+singlyLinkedList.unshift("Hi");
+
 console.log(JSON.stringify(singlyLinkedList, null, 2));
