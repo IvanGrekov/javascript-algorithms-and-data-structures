@@ -95,6 +95,58 @@ class SinglyLinkedList {
         this.length--;
         return removingNode;
     }
+
+    get(index) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+
+        let counter = 0;
+        let node = this.head;
+        while (node) {
+            if (counter === index) {
+                return node;
+            }
+
+            node = node.next;
+            counter++;
+        }
+
+        return null;
+    }
+
+    set(index, value) {
+        const node = this.get(index);
+
+        if (node) {
+            node.val = value;
+            return true;
+        }
+
+        return false;
+    }
+
+    insert(index, value) {
+        if (index === this.length) {
+            this.push(value);
+            return true;
+        } else if (index === 0) {
+            this.unshift(value);
+            return true;
+        }
+
+        const prevNode = this.get(index - 1);
+        if (!prevNode) {
+            return false;
+        }
+
+        const node = new Node(value);
+        node.next = prevNode.next;
+        prevNode.next = node;
+        this.length++;
+
+        return true;
+    }
 }
 
 const singlyLinkedList = new SinglyLinkedList();
@@ -109,6 +161,19 @@ singlyLinkedList.push("today?");
 
 // console.log(singlyLinkedList.shift());
 
-singlyLinkedList.unshift("Hi");
+// singlyLinkedList.unshift("Hi");
+
+// console.log(singlyLinkedList.get(-1));
+// console.log(singlyLinkedList.get(0));
+// console.log(singlyLinkedList.get(1));
+// console.log(singlyLinkedList.get(5));
+// console.log(singlyLinkedList.get(6));
+
+// console.log(singlyLinkedList.set(5, "today?!"));
+
+// console.log(singlyLinkedList.insert(6, "!!!"));
+// console.log(singlyLinkedList.insert(0, "Hi"));
+// console.log(singlyLinkedList.insert(1, "Hi"));
+// console.log(singlyLinkedList.insert(8, "!!!"));
 
 console.log(JSON.stringify(singlyLinkedList, null, 2));
