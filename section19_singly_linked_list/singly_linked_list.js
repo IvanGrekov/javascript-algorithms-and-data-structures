@@ -147,6 +147,25 @@ class SinglyLinkedList {
 
         return true;
     }
+
+    remove(index) {
+        if (index === this.length) {
+            return this.pop();
+        } else if (index === 0) {
+            return this.shift();
+        }
+
+        const prevNode = this.get(index - 1);
+        if (!prevNode) {
+            return undefined;
+        }
+
+        const removingNode = prevNode.next;
+        prevNode.next = removingNode.next;
+        this.length--;
+
+        return removingNode;
+    }
 }
 
 const singlyLinkedList = new SinglyLinkedList();
