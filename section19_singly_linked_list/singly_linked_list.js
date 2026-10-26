@@ -166,6 +166,34 @@ class SinglyLinkedList {
 
         return removingNode;
     }
+
+    reverse() {
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        let next;
+        let prev = null;
+        for (let i = 0; i < this.length; i++) {
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        // const values = [];
+        // let node = this.shift();
+
+        // while (node) {
+        //     values.push(node.val);
+        //     node = this.shift();
+        // }
+
+        // for (let i = values.length - 1; i >= 0; i--) {
+        //     this.push(values[i]);
+        // }
+
+        return this;
+    }
 }
 
 const singlyLinkedList = new SinglyLinkedList();
@@ -194,5 +222,7 @@ singlyLinkedList.push("today?");
 // console.log(singlyLinkedList.insert(0, "Hi"));
 // console.log(singlyLinkedList.insert(1, "Hi"));
 // console.log(singlyLinkedList.insert(8, "!!!"));
+
+singlyLinkedList.reverse();
 
 console.log(JSON.stringify(singlyLinkedList, null, 2));
