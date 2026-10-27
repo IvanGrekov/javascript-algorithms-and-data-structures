@@ -9,7 +9,7 @@
 // Search by value: O(n)
 
 // Insertion at the beginning: O(1)
-// Insertion at the end: O(1) (if we maintain a tail reference)
+// Insertion at the end: O(1)
 // Insertion at an arbitrary index: O(n)
 
 // Deletion at the beginning: O(1)
