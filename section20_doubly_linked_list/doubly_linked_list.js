@@ -105,6 +105,83 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+
+    get(index) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+
+        const shouldStartFromTail = (this.length / 2) < index;
+        let counter = shouldStartFromTail ? this.length - 1 : 0;
+        let node = shouldStartFromTail ? this.tail : this.head;
+        while (node) {
+            if (counter === index) {
+                return node;
+            }
+
+            shouldStartFromTail ? counter-- : counter++;
+            node = shouldStartFromTail ? node.prev : node.next;
+        }
+    }
+
+    set(index, value) {
+        const node = this.get(index);
+
+        if (node) {
+            node.val = value;
+            return true;
+        }
+
+        return false;
+    }
+
+    insert(index, value) {
+        if (index === 0) {
+            this.unshift(value);
+            return true;
+        } else if (index === this.length) {
+            this.push(value);
+            return true;
+        }
+
+        const prevNode = this.get(index - 1);
+        if (!prevNode) {
+            return false;
+        }
+
+        const nextNode = prevNode.next;
+        const node = new Node(value);
+        prevNode.next = node;
+        node.prev = prevNode;
+        node.next = nextNode;
+        nextNode.prev = node;
+        this.length++;
+
+        return true;
+    }
+
+    remove(index) {
+        if (index === 0) {
+            return this.shift();
+        } else if (index === this.length) {
+            return this.pop();
+        }
+
+        const removingNode = this.get(index);
+        if (!removingNode) {
+            return false;
+        }
+
+        const prevNode = removingNode.prev;
+        const nextNode = removingNode.next;
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
+        removingNode.prev = null;
+        removingNode.next = null;
+        this.length--;
+
+        return removingNode;
+    }
 }
 
 const doublyLinkedList = new DoublyLinkedList();
