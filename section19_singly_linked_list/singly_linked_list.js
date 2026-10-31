@@ -169,10 +169,11 @@ class SinglyLinkedList {
 
     reverse() {
         let node = this.head;
+
         this.head = this.tail;
         this.tail = node;
 
-        let next;
+        let next = null;
         let prev = null;
         for (let i = 0; i < this.length; i++) {
             next = node.next;
@@ -180,17 +181,6 @@ class SinglyLinkedList {
             prev = node;
             node = next;
         }
-        // const values = [];
-        // let node = this.shift();
-
-        // while (node) {
-        //     values.push(node.val);
-        //     node = this.shift();
-        // }
-
-        // for (let i = values.length - 1; i >= 0; i--) {
-        //     this.push(values[i]);
-        // }
 
         return this;
     }

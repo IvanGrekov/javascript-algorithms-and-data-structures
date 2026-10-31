@@ -182,16 +182,37 @@ class DoublyLinkedList {
 
         return removingNode;
     }
+
+    reverse() {
+        let node = this.head;
+
+        this.head = this.tail;
+        this.tail = node;
+
+        let next = null;
+        let prev = null;
+        for (let i = 0; i < this.length; i++) {
+            next = node.next;
+            node.next = prev;
+            node.prev = next
+            prev = node;
+            node = next;
+        }
+
+        return this;
+    }
 }
 
 const doublyLinkedList = new DoublyLinkedList();
-doublyLinkedList.push("World");
-doublyLinkedList.push("!");
-doublyLinkedList.push("How");
-doublyLinkedList.push("are");
-doublyLinkedList.push("you");
-doublyLinkedList.push("today?");
+doublyLinkedList.push("1");
+doublyLinkedList.push("2");
+doublyLinkedList.push("3");
+doublyLinkedList.push("4");
+doublyLinkedList.push("5");
+doublyLinkedList.push("6");
 
-console.log(doublyLinkedList.pop());
+console.log(doublyLinkedList);
+
+doublyLinkedList.reverse();
 
 console.log(doublyLinkedList);
