@@ -33,7 +33,12 @@ class Stack {
         }
 
         const removingNode = this.first;
-        this.first = removingNode.next;
+        if (this.size === 1) {
+            this.first = null;
+            this.last = null;
+        } else {
+            this.first = removingNode.next;
+        }
 
         removingNode.next = null;
         this.size--;
@@ -46,10 +51,10 @@ const stack = new Stack();
 stack.push(1);
 stack.push(2);
 stack.push(3);
-console.log(stack.size); // 3
+console.log(stack); // 3
 console.log(stack.pop()); // 3
-console.log(stack.size); // 2
+console.log(stack); // 2
 console.log(stack.pop()); // 2
 console.log(stack.pop()); // 1
-console.log(stack.size); // 0
+console.log(stack); // 0
 console.log(stack.pop()); // undefined
