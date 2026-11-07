@@ -23,3 +23,8 @@
 // – Sibling: Nodes that share the same parent.
 // – Leaf: A node with no children.
 // - Edge: The connection between a parent node and a child node.
+
+// BIG O:
+// - Insertion: O(log n) on average
+// - Find: O(log n) on average
+// - Deletion: O(log n) on average
