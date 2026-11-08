@@ -171,96 +171,42 @@ class BinarySearchTree {
             }
         }
     }
+
+    findLargest(root = this.root) {
+        if (!root) return undefined;
+
+        let node = root;
+
+        while (node.right) {
+            node = node.right;
+        }
+
+        return node.value;
+    }
+
+    findSecondLargest() {
+        if (!this.root || (!this.root.left && !this.root.right)) return undefined;
+
+        let parent = null;
+        let current = this.root;
+
+        while (current.right) {
+            parent = current;
+            current = current.right;
+        }
+
+        if (current.left) {
+            return this.findLargest(current.left);
+        } else {
+            return parent.value;
+        }
+    }
 }
 
-// const bst = new BinarySearchTree();
-
-// bst.insert(10);
-// bst.insert(15);
-// bst.insert(20);
-// bst.insert(21);
-// bst.insert(19);
-// bst.insert(14);
-// bst.insert(8);
-// bst.insert(9);
-// bst.insert(7);
-
-// console.log(bst.find(8));
-
-// bst.remove(8);
-// bst.remove(15);
-// bst.remove(7);
-// bst.remove(6);
-// bst.remove(21);
-
-// console.log(bst);
-
-// ------------------------------------------------
-
-// var binarySearchTree = new BinarySearchTree();
-// binarySearchTree
-//     .insert(15)
-//     .insert(20)
-//     .insert(10)
-//     .insert(12)
-//     .insert(1)
-//     .insert(5)
-//     .insert(50);
-
-// binarySearchTree.remove(50);
-// binarySearchTree.remove(5);
-// console.log(binarySearchTree);
-
-// var binarySearchTree = new BinarySearchTree();
-// binarySearchTree
-//     .insert(15)
-//     .insert(20)
-//     .insert(10)
-//     .insert(12)
-//     .insert(1)
-//     .insert(5)
-//     .insert(50);
-
-// binarySearchTree.remove(1);
-// binarySearchTree.remove(20);
-// console.log(binarySearchTree);
-
-// ------------------------------------------------
-
-// var binarySearchTree = new BinarySearchTree();
-// binarySearchTree
-//     .insert(15)
-//     .insert(20)
-//     .insert(10)
-//     .insert(12)
-//     .insert(1)
-//     .insert(5)
-//     .insert(50)
-//     .insert(60)
-//     .insert(30)
-//     .insert(25)
-//     .insert(23)
-//     .insert(24)
-//     .insert(70);
-
-// binarySearchTree.remove(10);
-// binarySearchTree.remove(50);
-// console.log(binarySearchTree);
-
-// ------------------------------------------------
-
 var binarySearchTree = new BinarySearchTree();
-binarySearchTree
-    .insert(22)
-    .insert(49)
-    .insert(85)
-    .insert(66)
-    .insert(95)
-    .insert(90)
-    .insert(100)
-    .insert(88)
-    .insert(93)
-    .insert(89)
-
-binarySearchTree.remove(85);
-console.log(binarySearchTree);
+binarySearchTree.insert(15);
+binarySearchTree.insert(20);
+binarySearchTree.insert(10);
+binarySearchTree.insert(12);
+console.log(binarySearchTree.findLargest());
+console.log(binarySearchTree.findSecondLargest());
