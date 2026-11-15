@@ -201,12 +201,57 @@ class BinarySearchTree {
             return parent.value;
         }
     }
+
+    // A balanced tree is defined as a tree
+    // where the depth of all leaf nodes
+    // or nodes with single children
+    // differ by no more than one.
+    isBalanced() {
+        if (!this.root) return true;
+
+        const depths = [];
+
+        const walk = (node, depth) => {
+            const isLeaf = !node.left && !node.right;
+            const hasSingleChild = !!node.left !== !!node.right;
+
+            if (isLeaf || hasSingleChild) {
+                depths.push(depth);
+            }
+
+            if (node.left) {
+                walk(node.left, depth + 1);
+            }
+
+            if (node.right) {
+                walk(node.right, depth + 1);
+            }
+        }
+
+        walk(this.root, 0);
+
+        return Math.max(...depths) - Math.min(...depths) <= 1;
+    }
 }
 
-var binarySearchTree = new BinarySearchTree();
-binarySearchTree.insert(15);
-binarySearchTree.insert(20);
-binarySearchTree.insert(10);
-binarySearchTree.insert(12);
-console.log(binarySearchTree.findLargest());
-console.log(binarySearchTree.findSecondLargest());
+var binarySearchTree1 = new BinarySearchTree();
+binarySearchTree1.insert(15);
+binarySearchTree1.insert(20);
+binarySearchTree1.insert(10);
+binarySearchTree1.insert(12);
+// console.log(binarySearchTree1.findLargest());
+// console.log(binarySearchTree1.findSecondLargest());
+console.log(binarySearchTree1.isBalanced());
+
+var binarySearchTree2 = new BinarySearchTree();
+binarySearchTree2.insert(15);
+binarySearchTree2.insert(20);
+binarySearchTree2.insert(25);
+binarySearchTree2.insert(30);
+console.log(binarySearchTree2.isBalanced());
+
+var binarySearchTree3 = new BinarySearchTree();
+binarySearchTree3.insert(5);
+binarySearchTree3.insert(6);
+binarySearchTree3.insert(7);
+console.log(binarySearchTree3.isBalanced());
