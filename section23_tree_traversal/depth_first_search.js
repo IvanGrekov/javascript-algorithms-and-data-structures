@@ -220,6 +220,23 @@ class BinarySearchTree {
         }
     }
 
+    bfs() {
+        const visited = [];
+
+        const queue = new Queue();
+        this.root && queue.enqueue(this.root);
+
+        while (queue.size) {
+            const dequeued = queue.dequeue();
+            visited.push(dequeued.value);
+
+            dequeued.left && queue.enqueue(dequeued.left);
+            dequeued.right && queue.enqueue(dequeued.right);
+        }
+
+        return visited;
+    }
+
     dfsPreOrder() {
         let node = this.root;
         if (!node) {
@@ -241,6 +258,23 @@ class BinarySearchTree {
 
         return visited;
     }
+
+    dfsPostOrder() {
+        const visited = [];
+
+        const goDeep = (node) => {
+            if (!node) return;
+
+            goDeep(node.left);
+            goDeep(node.right);
+
+            visited.push(node.value);
+        };
+
+        goDeep(this.root);
+
+        return visited;
+    }
 }
 
 const tree = new BinarySearchTree();
@@ -252,3 +286,4 @@ tree.insert(15);
 tree.insert(20);
 
 console.log(tree.dfsPreOrder());
+console.log(tree.dfsPostOrder());
